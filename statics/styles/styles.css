@@ -1,9 +1,13 @@
+:root{
+	--num-columnas: 10;
+	--num-filas: 10;
+	--size: 32px;
+}
 #tablero{
   display:grid;
   grid-template-columns: repeat(var(--nfilas), 32px);
   grid-template-rows: repeat(var(--ncolumnas), 32px);
 }
- 
 #tablero div{
   background-color: #BBBBBB;
   border-left: 2px solid #D3D3D3;
