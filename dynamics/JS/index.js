@@ -30,7 +30,7 @@ function pintarTablero(){
             const casilla = document.createElement("div");
 
             //Establece id al elemento
-            casilla.setAttribute("id","fila" + fila + "_columna" + columna );
+            casilla.setAttribute("id", fila + " " + columna );
 
             //Evento pasar el mouse encima del elemento
             casilla.addEventListener("mouseover", color);
@@ -110,17 +110,28 @@ function color(evento){
     // evento.target.style.backgroundcolor = "red";
 }
 function bandera(evento){
-    // console.log(evento);
-    // let casilla = evento.target;
-    // console.log(casilla);
-
-    //evento.target
-
+    console.log(evento.target);
+    if(evento.target.classList.contains("flag")){
+        evento.target.classList.remove("flag");
+        evento.target.classList.add("duda");
+        buscaminas.mEncontradas--;
+    } else if(evento.target.classList.contains("duda")){
+        evento.target.classList.remove("duda");
+    } else if (evento.target.classList.length == 0){
+        evento.target.classList.add("flag");
+        buscaminas.mEncontradas++;
+        if(buscaminas.mEncontradas == buscaminas.mTotales){
+            buscaminas.resolverTablero(true);
+        }
+    }
     evento.stopPropagation();//Detiene bubbling
     evento.preventDefault();//No mostrar menú del navegador
 }
 function abrir (evento){
-    alert("abrir");
+    console.log(evento.target.id);
+    id = evento.target.id;
+    id.split(" ",2);
+    console.log(id);
 }
 //Por mientras
 function inicio(){
