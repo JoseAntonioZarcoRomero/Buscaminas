@@ -4,7 +4,10 @@ const buscaminas = {
     nfilas: 8,
     ncolumnas: 8,
     vModo: 1,
-    mCampo: []
+    mCampo: [],
+    contInicial: 0,
+    contFinal: 0,
+    puntajeSegundos: 0
 }
 /*Pinta el tablero
 ------------------------------------------------------------------------------------------*/
@@ -194,8 +197,14 @@ function resolverTablero(ganarOperder){
     }
 }
 function ganaste(){
-    alert("Has ganado");
-    guardar.style.display = "block";
+    alert("¡Has ganado!");
+    guardarP.style.display = "block";
+    //Contador final puntaje (milisegundos)
+    const fechaFinal = new Date();
+    let msFinal = fechaFinal.setTime(fechaFinal.getTime());//#milisegundos desde 1/01/1970 GMT
+    buscaminas.contFinal = msFinal;
+    buscaminas.puntajeSegundos = Math.round((buscaminas.contFinal-buscaminas.contInicial)/1000);
+    document.querySelector("#nSegundos").innerHTML = buscaminas.puntajeSegundos;
 }
 function perdiste(){
     alert("Has perdido :(");
@@ -210,24 +219,34 @@ function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.ncolumnas = numColumnas;
     buscaminas.mTotales = totMinas;
     buscaminas.vModo = vModo;
+    buscaminas.mEncontradas = 0;
+    buscaminas.contInicial = 0;
+    buscaminas.contFinal = 0;
+    buscaminas.puntajeSegundos = 0;
     pintarTablero();
     mMatriz();
     mEsparcidas();
     contarMinas();
     mRestantes();
+    //Contador inicial puntaje (milisegundos)
+    let fechaInicial = new Date();
+    let msInicial = fechaInicial.setTime(fechaInicial.getTime());//#milisegundos desde 1/01/1970 GMT
+    buscaminas.contInicial = msInicial;
 }
 
 const modalidad = document.getElementById("contModalidad");
 const juego = document.getElementById("juego");
 const estado = document.getElementById("estado");
-const guardar = document.getElementById("btn-guardar");
+const guardarP = document.getElementById("btn-guardar");
+const subirP = document.getElementById("subirP");
+const guardarBD = document.getElementById("btn-guardarBD");
 const intentar = document.getElementById("btn-intentar");
 const returnInicio = document.getElementById("btn-returnInicio");
 
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
-        inicio(8,8,10,1);
+        inicio(8,8,1,1);//
     } else if(modalidadClickeada.id == 'btn-medio'){
         inicio(16,16,40,2);
     } else if(modalidadClickeada.id == 'btn-dificil'){
@@ -243,7 +262,8 @@ returnInicio.addEventListener("click", ()=>{
     modalidad.style.display = "flex";
     juego.style.display = "none";
     estado.style.display = "none";
-    guardar.style.display = "none";
+    guardarP.style.display = "none";
+    subirP.style.display = "none";
     intentar.style.display = "none";
     returnInicio.style.display = "none";
 });
@@ -251,7 +271,7 @@ returnInicio.addEventListener("click", ()=>{
 intentar.addEventListener("click", ()=>{
     switch(buscaminas.vModo){
         case 1:
-            inicio(8,8,10,1);
+            inicio(8,8,1,1);
             break;
         case 2:
             inicio(16,16,40,2);
@@ -264,3 +284,11 @@ intentar.addEventListener("click", ()=>{
     }
     intentar.style.display = "none";
 });
+
+guardarP.addEventListener("click", subirpuntaje);
+function subirpuntaje(){
+    juego.style.display = "none";
+    estado.style.display = "none";
+    subirP.style.display = "block";
+    guardarP.style.display = "none";
+}

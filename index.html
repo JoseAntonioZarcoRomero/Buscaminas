@@ -40,13 +40,13 @@
         <div id="subirP">
             <h2>¿Quieres subir tu puntaje?</h2>
             <form method="post" target="_self" id="form">
-                <p>Tu tiempo fue de $$ segundo(s)</p>
+                <p>Tu tiempo fue de <span id="nSegundos"></span> segundo(s)</p>
                 <label for="nombre">Nombre del jugador: </label><br>
                     <input type="text" name="nombre" id="nombre"><br><br>
                 <label for="nombreC">Confirmar nombre del jugador: </label><br>
                     <input type="text" name="nombreC" id="nombreC"><br><br>
             </form>
-            <button>Guardar puntaje</button>
+            <button class="boton" id="btn-guardarBD">Guardar</button>
         </div>
 
         <button class="boton" id="btn-returnInicio">Regresar al inicio</button>
