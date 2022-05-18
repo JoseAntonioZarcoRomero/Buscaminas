@@ -3,6 +3,7 @@ const buscaminas = {
     mEncontradas: 0,
     nfilas: 8,
     ncolumnas: 8,
+    vModo: 1,
     mCampo: []
 }
 /*Pinta el tablero
@@ -118,12 +119,12 @@ function bandera(evento){
 //Evento clic izquierdo
 function abrir(evento){
     if (evento.type === "click"){
-        let casilla = evento.currentTarget;//Obtiene el elemento que ha disparado el evento
+        let casillaClickeada = evento.currentTarget;//Obtiene el elemento que ha disparado el evento
         evento.stopPropagation();//Detiene bubbling
         evento.preventDefault();//No mostrar menú del navegador
         //Obtiene los datos de las propiedades dataset (string -> número)
-        let fila = parseInt(casilla.dataset.fila,10);
-        let columna = parseInt(casilla.dataset.columna,10);
+        let fila = parseInt(casillaClickeada.dataset.fila,10);
+        let columna = parseInt(casillaClickeada.dataset.columna,10);
         abrirCasilla(fila,columna);
     }
 }
@@ -180,26 +181,35 @@ function resolverTablero(ganarOperder){
                 ganarOperder = false;
             }
         } else if (!aCasillas[i].classList.contains("abierta")){
-            if (buscaminas.mCampo[fila][columna] == "M"){//destapamos el resto de las minas
+            if (buscaminas.mCampo[fila][columna] == "M"){//Abre todas las minas
                 aCasillas[i].classList.add("abierta");
                 aCasillas[i].classList.add("mina");
             }
         }
     }
     if (ganarOperder == true){
-        alert("Ganaste");
+        ganaste();
     } else {
-        alert("Perdiste");
+        perdiste();
     }
+}
+function ganaste(){
+    alert("Has ganado");
+    guardar.style.display = "block";
+}
+function perdiste(){
+    alert("Has perdido :(");
+    intentar.style.display = "block";
 }
 //Contador del número de minas restantes
 function mRestantes(){
     document.querySelector("#numMinasRestantes").innerHTML = (buscaminas.mTotales - buscaminas.mEncontradas);
 }
-function inicio(numFilas,numColumnas,totMinas){
+function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.nfilas = numFilas;
     buscaminas.ncolumnas = numColumnas;
     buscaminas.mTotales = totMinas;
+    buscaminas.vModo = vModo;
     pintarTablero();
     mMatriz();
     mEsparcidas();
@@ -209,22 +219,48 @@ function inicio(numFilas,numColumnas,totMinas){
 
 const modalidad = document.getElementById("contModalidad");
 const juego = document.getElementById("juego");
+const estado = document.getElementById("estado");
+const guardar = document.getElementById("btn-guardar");
+const intentar = document.getElementById("btn-intentar");
 const returnInicio = document.getElementById("btn-returnInicio");
+
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
-        inicio(8,8,10);
+        inicio(8,8,10,1);
     } else if(modalidadClickeada.id == 'btn-medio'){
-        inicio(16,16,40);
+        inicio(16,16,40,2);
     } else if(modalidadClickeada.id == 'btn-dificil'){
-        inicio(24,24,99);
+        inicio(24,24,99,3);
     }
     modalidad.style.display = "none";
-    juego.style.display = "block";
+    juego.style.display = "flex";
+    estado.style.display = "block";
     returnInicio.style.display = "block";
 });
+
 returnInicio.addEventListener("click", ()=>{
-    modalidad.style.display = "block";
+    modalidad.style.display = "flex";
     juego.style.display = "none";
+    estado.style.display = "none";
+    guardar.style.display = "none";
+    intentar.style.display = "none";
     returnInicio.style.display = "none";
+});
+
+intentar.addEventListener("click", ()=>{
+    switch(buscaminas.vModo){
+        case 1:
+            inicio(8,8,10,1);
+            break;
+        case 2:
+            inicio(16,16,40,2);
+            break;
+        case 3:
+            inicio(24,24,99,3);
+            break;
+        default:
+            break;
+    }
+    intentar.style.display = "none";
 });

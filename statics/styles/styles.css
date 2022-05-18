@@ -4,26 +4,34 @@
 	--size: 32px;
 	/* --size: 2vw; */
 }
-.centrar{
+#encabezado{
+	display:flex;
+	margin-bottom: 40px;
 	text-align: center;
+	flex-flow: column;
+	justify-content: space-evenly;
 }
 #contModalidad{
-	display: block;
+    display:flex;
+	justify-content: space-evenly;
 }
 
 /*Juego buscaminas
 ------------------------------------------------------------------------------------------*/
 #juego{
-	display: none;
+	display: flex;
+	justify-content: center;
 }
 #tablero{
 	padding: 10px;
+	justify-content: center;
 	display: grid;
 	grid-template-columns: repeat(var(--ncolumnas), var(--size));
 	grid-template-rows: repeat(var(--nfilas), var(--size));
 	width: calc(var(--ncolumnas)*var(--size));
+	text-align: center;
 }
-#tablero div{
+#tablero>div{
 	background-color: #fdfcb1;
 	border-left: 2px solid #ffffea;
 	border-top: 2px solid #ffffea;
@@ -31,7 +39,7 @@
 	border-bottom: 2px solid #e0df75;
 	line-height: var(--size);
 }
-#tablero div.abierta{
+#tablero>div.abierta{
 	font-family: "Lucida Console", monospace;
 	font-weight: bold;
 	border-left: 1px solid #e0df75;
@@ -40,32 +48,56 @@
 	border-bottom: 1px solid #ffffea;
 	text-shadow: 1px 1px 2px #e0df75;
 }
-#tablero div.sinmarcar{
+#tablero>div.sinmarcar{
 	background-color: red;
 }
-#tablero div.NOflag{
+#tablero>div.NOflag{
 	background-color: #fdfcb1;
 	border: 1px solid red;
 }
+/* Contador minas restantes */
+#contEstado{
+	display: flex;
+	justify-content: center;
+}
 #estado{
-	padding: 2px 10px 2px 10px;
+	display: none;
 	background-color: rgba(149, 230, 142, 0.904);
 	width: calc(var(--ncolumnas)*var(--size));
 	border-radius: 100px;
+	padding: 0.5em;
 	font-family: sans-serif;
 	font-size: 14px;
-	padding: 4px;
+	text-align: center;
 }
 /*Color del número de minas que una casilla tiene alrededor-------------------------------*/
-#tablero div.c0{ color: grey;}
-#tablero div.c1{ color: cyan;}
-#tablero div.c2{ color: royalblue;}
-#tablero div.c3{ color: blue;}
-#tablero div.c4{ color: greenyellow;}
-#tablero div.c5{ color: green;}
-#tablero div.c6{ color: orange;}
-#tablero div.c7{ color: orangered;}
-#tablero div.c8{ color: brown;}
+#tablero>div.c0{ 
+	color: grey;
+}
+#tablero>div.c1{ 
+	color: cyan;
+}
+#tablero>div.c2{ 
+	color: royalblue;
+}
+#tablero>div.c3{ 
+	color: blue;
+}
+#tablero>div.c4{ 
+	color: greenyellow;
+}
+#tablero>div.c5{ 
+	color: green;
+}
+#tablero>div.c6{ 
+	color: orange;
+}
+#tablero>div.c7{ 
+	color: orangered;
+}
+#tablero>div.c8{ 
+	color: brown;
+}
 /*ICONOS----------------------------------------------------------------------------------*/
 .flag:before{ 
 	content: '🚩'; 
@@ -78,11 +110,14 @@
 ------------------------------------------------------------------------------------------*/
 #subirP{
 	display: none;
-  border: 2px solid black;
-  padding: 1em;
+	border: 2px solid black;
+	padding: 1em;
 }
 
-#guardarOintentar{
+#btn-guardar{
+	display: none;
+}
+#btn-intentar{
 	display: none;
 }
 #btn-returnInicio{
