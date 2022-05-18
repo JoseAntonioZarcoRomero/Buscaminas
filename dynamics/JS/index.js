@@ -223,3 +223,8 @@ modalidad.addEventListener("click", (event)=>{
     juego.style.display = "block";
     returnInicio.style.display = "block";
 });
+returnInicio.addEventListener("click", ()=>{
+    modalidad.style.display = "block";
+    juego.style.display = "none";
+    returnInicio.style.display = "none";
+});
