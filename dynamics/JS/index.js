@@ -30,7 +30,7 @@ function pintarTablero(){
             const casilla = document.createElement("div");
 
             //Establece id al elemento
-            casilla.setAttribute("id", fila + " " + columna );
+            casilla.setAttribute("id", fila + "_" + columna );
 
             //Evento pasar el mouse encima del elemento
             casilla.addEventListener("mouseover", color);
@@ -106,33 +106,76 @@ function contarMinas(){
 /*Funciones a eventos
 ------------------------------------------------------------------------------------------*/
 function color(evento){
-    // console.log(evento.target);
+    const casillaClickeada =  evento.target;
     // evento.target.style.backgroundcolor = "red";
 }
 function bandera(evento){
-    console.log(evento.target);
-    if(evento.target.classList.contains("flag")){
-        evento.target.classList.remove("flag");
-        evento.target.classList.add("duda");
+    const casillaClickeada =  evento.target;
+    console.log(casillaClickeada);
+    evento.stopPropagation();//Detiene bubbling
+    evento.preventDefault();//No mostrar menú del navegador
+    if(casillaClickeada.classList.contains("icon-flag")){
+        casillaClickeada.classList.remove("icon-flag");
+        casillaClickeada.classList.add("icon-duda");
         buscaminas.mEncontradas--;
-    } else if(evento.target.classList.contains("duda")){
-        evento.target.classList.remove("duda");
-    } else if (evento.target.classList.length == 0){
-        evento.target.classList.add("flag");
+    } else if(casillaClickeada.classList.contains("icon-duda")){
+        casillaClickeada.classList.remove("icon-duda");
+    } else if (casillaClickeada.classList.length == 0){
+        casillaClickeada.classList.add("icon-flag");
         buscaminas.mEncontradas++;
         if(buscaminas.mEncontradas == buscaminas.mTotales){
             buscaminas.resolverTablero(true);
         }
     }
-    evento.stopPropagation();//Detiene bubbling
-    evento.preventDefault();//No mostrar menú del navegador
 }
 function abrir (evento){
-    console.log(evento.target.id);
-    id = evento.target.id;
-    id.split(" ",2);
-    console.log(id);
+    const casillaClickeada =  evento.target;
+    let datos = casillaClickeada.id.split("_",2);
+    let fila = datos[0];
+    let columna = datos[1];
+    abreCasilla(fila,columna);
+    // let id_casilla = "#"+evento.target.id;
+    // let casilla = document.querySelector(id_casilla);
+    // console.log(casilla);
+    // if(!casilla.contains("open")){
+    //     if(!casilla.classList.contains("flag")){
+    //         evento.target.classList.add("open");
+    //         casilla.innerHTML = buscaminas.mCampo[fila][columna];
+    //     }
+    // }
 }
+function abreCasilla(fila,columna){
+    console.log("Abrimos la casilla de la fila:"+fila+" y columna:"+columna);
+    if (fila>-1 && fila<buscaminas.nfilas && columna>-1 && columna<buscaminas.ncolumnas){
+        //let casilla = document.querySelector("#" + fila + "_" + columna);
+        let casilla = document.getElementById("#"+fila+"_"+columna);
+        if (!casilla.classList.contains("abierta")){
+            if (!casilla.classList.contains("icon-flag")){
+                casilla.classList.add("abierta");
+                casilla.innerHTML = buscaminas.mCampo[fila][columna];
+                if (buscaminas.mCampo[fila][columna] != "M"){
+                    if (buscaminas.mCampo[fila][columna] == 0){
+                        abreCasilla(fila-1,columna-1);
+                        abreCasilla(fila-1,columna);
+                        abreCasilla(fila-1,columna+1);
+                        abreCasilla(fila,columna-1);
+                        abreCasilla(fila,columna+1);
+                        abreCasilla(fila+1,columna-1);
+                        abreCasilla(fila+1,columna);
+                        abreCasilla(fila+1,columna+1);
+                        casilla.innerHTML  = "";
+                    }
+                } else if(buscaminas.mCampo[fila][columna] == "M"){
+                    casilla.innerHTML = "";
+                    casilla.classList.add("icon-bomba");
+                    casilla.classList.add("sinmarcar");
+                    resolverTablero(false);
+                }
+            }
+        }
+    }
+}
+
 //Por mientras
 function inicio(){
     pintarTablero();
