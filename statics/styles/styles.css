@@ -1,0 +1,90 @@
+:root{
+	--ncolumnas: 8;
+	--nfilas: 8;
+	--size: 32px;
+	/* --size: 2vw; */
+}
+.centrar{
+	text-align: center;
+}
+#contModalidad{
+	display: block;
+}
+
+/*Juego buscaminas
+------------------------------------------------------------------------------------------*/
+#juego{
+	display: none;
+}
+#tablero{
+	padding: 10px;
+	display: grid;
+	grid-template-columns: repeat(var(--ncolumnas), var(--size));
+	grid-template-rows: repeat(var(--nfilas), var(--size));
+	width: calc(var(--ncolumnas)*var(--size));
+}
+#tablero div{
+	background-color: #fdfcb1;
+	border-left: 2px solid #ffffea;
+	border-top: 2px solid #ffffea;
+	border-right: 2px solid #e0df75;
+	border-bottom: 2px solid #e0df75;
+	line-height: var(--size);
+}
+#tablero div.abierta{
+	font-family: "Lucida Console", monospace;
+	font-weight: bold;
+	border-left: 1px solid #e0df75;
+	border-top: 1px solid #e0df75;
+	border-right: 1px solid #ffffea;
+	border-bottom: 1px solid #ffffea;
+	text-shadow: 1px 1px 2px #e0df75;
+}
+#tablero div.sinmarcar{
+	background-color: red;
+}
+#tablero div.NOflag{
+	background-color: #fdfcb1;
+	border: 1px solid red;
+}
+#estado{
+	padding: 2px 10px 2px 10px;
+	background-color: rgba(149, 230, 142, 0.904);
+	width: calc(var(--ncolumnas)*var(--size));
+	border-radius: 100px;
+	font-family: sans-serif;
+	font-size: 14px;
+	padding: 4px;
+}
+/*Color del número de minas que una casilla tiene alrededor-------------------------------*/
+#tablero div.c0{ color: grey;}
+#tablero div.c1{ color: cyan;}
+#tablero div.c2{ color: royalblue;}
+#tablero div.c3{ color: blue;}
+#tablero div.c4{ color: greenyellow;}
+#tablero div.c5{ color: green;}
+#tablero div.c6{ color: orange;}
+#tablero div.c7{ color: orangered;}
+#tablero div.c8{ color: brown;}
+/*ICONOS----------------------------------------------------------------------------------*/
+.flag:before{ 
+	content: '🚩'; 
+}
+.mina:before{ 
+	content: '💣'; 
+}
+
+/*Subir puntaje
+------------------------------------------------------------------------------------------*/
+#subirP{
+	display: none;
+  border: 2px solid black;
+  padding: 1em;
+}
+
+#guardarOintentar{
+	display: none;
+}
+#btn-returnInicio{
+	display: none;
+}

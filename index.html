@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,22 +8,43 @@
         <link rel="stylesheet" href="./statics/styles/styles.css">
     </head>
     <body>
-        <h1>Buscaminas</h1>
-
+        <h1 class="centrar">Buscaminas</h1>
         <form action="./dynamics/puntajes.php" method='post' target='_self'>
             <button>Ver<br>Puntajes</button>
         </form>
-        <br><br>
-        
-        <button>
-            Fácil<br>(8x8 con 10 bombas)
-        </button>
-        <button>
-            Medio<br>(16x16 con 40 bombas)
-        </button>
-        <button>
-            Difícil<br>(24x24 con 99 bombas)
-        </button>
+
+        <div id="contModalidad">
+            <button id="btn-facil">Fácil<br>(8x8 con 10 bombas)</button>
+            <button id="btn-medio">Medio<br>(16x16 con 40 bombas)</button>
+            <button id="btn-dificil">Difícil<br>(24x24 con 99 bombas)</button>
+        </div>
+
+        <div class="centrar" id="juego">
+            <div id="tablero">
+            </div>
+            <div id="estado">
+                Número de minas restantes: <span id="numMinasRestantes"></sapn>
+            </div>
+        </div>
+
+        <div id="guardarOintentar">
+            <button id="btn-guardar">Guardar puntaje</button>
+            <button id="btn-intentar">Intentar de nuevo</button>
+        </div>
+
+        <div id="subirP">
+            <h2>¿Quieres subir tu puntaje?</h2>
+            <form method="post" target="_self" id="form">
+                <p>Tu tiempo fue de $$ segundo(s)</p>
+                <label for="nombre">Nombre del jugador: </label><br>
+                    <input type="text" name="nombre" id="nombre"><br><br>
+                <label for="nombreC">Confirmar nombre del jugador: </label><br>
+                    <input type="text" name="nombreC" id="nombreC"><br><br>
+            </form>
+            <button>Guardar puntaje</button>
+        </div>
+
+        <button id="btn-returnInicio">Regresar al inicio</button>
         <script src="./dynamics/JS/index.js"></script>
     </body>
 </html>
