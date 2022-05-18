@@ -15,6 +15,9 @@
     display:flex;
 	justify-content: space-evenly;
 }
+.boton:hover{
+	background-color: aqua;
+}
 
 /*Juego buscaminas
 ------------------------------------------------------------------------------------------*/
@@ -38,6 +41,9 @@
 	border-right: 2px solid #e0df75;
 	border-bottom: 2px solid #e0df75;
 	line-height: var(--size);
+}
+#tablero>div:hover{
+	background-color: #9b984c;
 }
 #tablero>div.abierta{
 	font-family: "Lucida Console", monospace;
