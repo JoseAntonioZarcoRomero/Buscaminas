@@ -9,16 +9,16 @@
     </head>
     <body>
         <div id="encabezado">
-            <h1>Buscaminas</h1>
+            <h1 class="title">B u s c a m i n a s</h1>
             <form action="./dynamics/puntajes.php" method='post' target='_self'>
                 <button class="boton">Ver<br>Puntajes</button>
             </form>
         </div>
 
         <div id="contModalidad">
-            <button class="boton" id="btn-facil" value="1">Fácil<br>(8x8 con 10 bombas)</button>
-            <button class="boton" id="btn-medio" value="2">Medio<br>(16x16 con 40 bombas)</button>
-            <button class="boton" id="btn-dificil" value="3">Difícil<br>(24x24 con 99 bombas)</button>
+            <button class="boton" id="btn-facil" value="1" class="title">Fácil<br>(8x8 con 10 bombas)</button>
+            <button class="boton" id="btn-medio" value="2" class="title">Medio<br>(16x16 con 40 bombas)</button>
+            <button class="boton" id="btn-dificil" value="3" class="title">Difícil<br>(24x24 con 99 bombas)</button>
         </div>
 
         <div id="juego">
@@ -26,30 +26,30 @@
             </div>
         </div>
         <div id="contEstado">
-            <div id="estado">
-                Número de minas restantes: <span id="numMinasRestantes"></sapn>
+            <div id="estado" class="text">
+                Número de minas restantes: <span id="numMinasRestantes" class="text"></sapn>
             </div>
         </div>
         
 
         <div id="guardarOintentar">
-            <button class="boton" id="btn-guardar">Guardar puntaje</button>
-            <button class="boton" id="btn-intentar">Intentar de nuevo</button>
+            <button class="boton" id="btn-guardar" class="text">Guardar puntaje</button>
+            <button class="boton" id="btn-intentar" class="text">Intentar de nuevo</button>
         </div>
 
         <div id="subirP">
             <h2>¿Quieres subir tu puntaje?</h2>
             <form method="post" target="_self" id="form">
-                <p>Tu tiempo fue de <span id="nSegundos"></span> segundo(s)</p>
-                <label for="nombre">Nombre del jugador: </label><br>
-                    <input type="text" name="nombre" id="nombre" placeholder="Sin espacios"><br><br>
-                <label for="confirmar">Confirmar nombre del jugador: </label><br>
-                    <input type="text" name="confirmar" id="confirmar" placeholder="Sin espacios"><br><br>
+                <p class="text">Tu tiempo fue de <span id="nSegundos"></span> segundo(s)</p>
+                <label for="nombre" class="text">Nombre del jugador: </label><br>
+                    <input type="text" name="nombre" id="nombre" class="text" placeholder="Sin espacios"><br><br>
+                <label for="confirmar" class="text">Confirmar nombre del jugador: </label><br>
+                    <input type="text" name="confirmar" id="confirmar" class="text" placeholder="Sin espacios"><br><br>
             </form>
-            <button class="boton" id="btn-guardarBD">Guardar</button>
+            <button class="boton" id="btn-guardarBD" class="text">Guardar</button>
         </div>
 
-        <button class="boton" id="btn-returnInicio">Regresar al inicio</button>
+        <button class="boton" id="btn-returnInicio" class="text">Regresar al inicio</button>
         <script src="./dynamics/JS/index.js"></script>
     </body>
 </html>
