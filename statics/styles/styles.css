@@ -39,6 +39,16 @@ body{
 	background-image: url(../img/logo.jpeg);
 }
 
+/*#rayo{
+	justify-content: left;
+	order: 2;
+}
+
+#sally{
+	justify-content: right;
+	order: 1;
+}*/
+
 #encabezado{
 	display:flex;
 	margin-bottom: 40px;
@@ -136,10 +146,10 @@ body{
 	color: orange;
 }
 #tablero>div.c7{ 
-	color: orangered;
+	color: rgb(124, 203, 108);
 }
 #tablero>div.c8{ 
-	color: brown;
+	color: rgb(133, 202, 204);
 }
 /*ICONOS----------------------------------------------------------------------------------*/
 .flag:before{ 
