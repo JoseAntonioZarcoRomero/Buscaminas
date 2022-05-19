@@ -33,6 +33,10 @@
     color: white;
 	border-color: black;
 	background-color: rgb(255, 79, 79);
+	border-radius: 20px;
+	width: 300px;
+	height: 50px;
+	font-weight: bolder;
 }
 
 body{
@@ -61,9 +65,11 @@ body{
 	justify-content: space-evenly;
 }
 .boton:hover{
-	background-color:rgb(175, 175, 175);
-	border-radius: 10%;
-	border-color:rgb(163, 73, 73) ;
+	background-color:#FA7E0D;
+	border-radius: 90px;
+	font-weight: bolder;
+	color:whitesmoke;
+	border-color:#DE130B;
 }
 
 /*Juego buscaminas
@@ -85,15 +91,15 @@ body{
 	background-color: #e88a8a;
 	border-left: 2px solid #ffffea;
 	border-top: 2px solid #ffffea;
-	border-right: 2px solid #cf0a0a;
-	border-bottom: 2px solid #cf0a0a;
+	border-right: 2px solid #d3c7c7bb;
+	border-bottom: 2px solid #d3c7c7bb;
 	line-height: var(--size);
 }
 #tablero>div:hover{
 	background-color: #9b984c;
 }
 #tablero>div.abierta{
-	font-family: "Lucida Console", monospace;
+	font-family: "text", 'Lucida Console', monospace;
 	font-weight: bold;
 	border-left: 1px solid #e0df75;
 	border-top: 1px solid #e0df75;
@@ -106,7 +112,7 @@ body{
 }
 #tablero>div.NOflag{
 	background-color: #ec9a87;
-	border: 1px solid rgb(0, 0, 0);
+	border: 1px solid rgb(30, 41, 195);
 }
 /* Contador minas restantes */
 #contEstado{
@@ -140,7 +146,7 @@ body{
 	color: greenyellow;
 }
 #tablero>div.c5{ 
-	color: green;
+	color: rgb(225, 0, 0);
 }
 #tablero>div.c6{ 
 	color: orange;
