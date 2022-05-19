@@ -7,7 +7,9 @@ const buscaminas = {
     mCampo: [],
     contInicial: 0,
     contFinal: 0,
-    puntajeSegundos: 0
+    puntajeSegundos: 0,
+    date: "",
+    user: ""
 }
 /*Pinta el tablero
 ------------------------------------------------------------------------------------------*/
@@ -205,15 +207,23 @@ function ganaste(){
     buscaminas.contFinal = msFinal;
     buscaminas.puntajeSegundos = Math.round((buscaminas.contFinal-buscaminas.contInicial)/1000);
     document.querySelector("#nSegundos").innerHTML = buscaminas.puntajeSegundos;
+    //Formato de fecha
+    let date = new Date();
+    buscaminas.date = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    win.volume = .2;
+    win.play();
 }
 function perdiste(){
     alert("Has perdido :(");
     intentar.style.display = "block";
+    explosion.volume = .2;
+    explosion.play();
 }
 //Contador del número de minas restantes
 function mRestantes(){
     document.querySelector("#numMinasRestantes").innerHTML = (buscaminas.mTotales - buscaminas.mEncontradas);
 }
+
 function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.nfilas = numFilas;
     buscaminas.ncolumnas = numColumnas;
@@ -223,6 +233,8 @@ function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.contInicial = 0;
     buscaminas.contFinal = 0;
     buscaminas.puntajeSegundos = 0;
+    buscaminas.date = "";
+    buscaminas.user = "";
     pintarTablero();
     mMatriz();
     mEsparcidas();
@@ -234,19 +246,23 @@ function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.contInicial = msInicial;
 }
 
+const explosion = new Audio("./statics/media/audio/explosion.mp3");
+const win = new Audio("./statics/media/audio/win.mp3");
 const modalidad = document.getElementById("contModalidad");
 const juego = document.getElementById("juego");
 const estado = document.getElementById("estado");
 const guardarP = document.getElementById("btn-guardar");
 const subirP = document.getElementById("subirP");
 const guardarBD = document.getElementById("btn-guardarBD");
+const nombre = document.getElementById("nombre");
+const confirmar = document.getElementById("confirmar");
 const intentar = document.getElementById("btn-intentar");
 const returnInicio = document.getElementById("btn-returnInicio");
 
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
-        inicio(8,8,1,1);//
+        inicio(8,8,10,1);//
     } else if(modalidadClickeada.id == 'btn-medio'){
         inicio(16,16,40,2);
     } else if(modalidadClickeada.id == 'btn-dificil'){
@@ -271,7 +287,7 @@ returnInicio.addEventListener("click", ()=>{
 intentar.addEventListener("click", ()=>{
     switch(buscaminas.vModo){
         case 1:
-            inicio(8,8,1,1);
+            inicio(8,8,10,1);
             break;
         case 2:
             inicio(16,16,40,2);
@@ -285,10 +301,30 @@ intentar.addEventListener("click", ()=>{
     intentar.style.display = "none";
 });
 
-guardarP.addEventListener("click", subirpuntaje);
-function subirpuntaje(){
+guardarP.addEventListener("click", ()=>{
     juego.style.display = "none";
     estado.style.display = "none";
     subirP.style.display = "block";
     guardarP.style.display = "none";
-}
+});
+
+confirmar.addEventListener("keyup", ()=>{
+    if(nombre.value == confirmar.value){
+        guardarBD.style.display ="block";
+    } else {
+        guardarBD.style.display ="none";
+    }
+});
+
+guardarBD.addEventListener("click", () =>{
+    if(nombre.value == confirmar.value){
+        buscaminas.user = confirmar.value;
+        console.log(buscaminas.vModo);
+        console.log(buscaminas.puntajeSegundos);
+        console.log(buscaminas.date);
+        console.log(buscaminas.user);
+        subirP.style.display = "none";
+        returnInicio.style.display = "none";
+        modalidad.style.display = "flex";
+    }
+});

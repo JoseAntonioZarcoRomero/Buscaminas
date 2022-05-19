@@ -123,6 +123,9 @@
 #btn-guardar{
 	display: none;
 }
+#btn-guardarBD{
+	display: none;
+}
 #btn-intentar{
 	display: none;
 }
