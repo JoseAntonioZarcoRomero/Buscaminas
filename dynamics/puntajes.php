@@ -21,6 +21,7 @@
                 </thead>
                 <tbody>
                     <?php
+                        $i=0;
                         include("./config.php");
                         $conexion = connect();
                         $peticion = "SELECT*FROM usuario NATURAL JOIN puntaje";
@@ -36,11 +37,14 @@
                                     </tr>
                                 ";
                             } else {
-                                echo "
-                                    <tr>
-                                        <td colspan='4'>No hay puntajes en este modo</td>
-                                    </tr>
-                                ";
+                                while($i==0){
+                                    echo "
+                                        <tr>
+                                            <td colspan='4'>No hay puntajes en este modo</td>
+                                        </tr>
+                                    ";
+                                    $i++;
+                                }
                             }
                         }
                     ?>
@@ -58,6 +62,7 @@
                 </thead>
                 <tbody>
                     <?php
+                        $i=0;
                         $peticion = "SELECT*FROM usuario NATURAL JOIN puntaje";
                         $query = mysqli_query($conexion, $peticion);
                         while($row = mysqli_fetch_array($query,MYSQLI_NUM)){
@@ -71,11 +76,14 @@
                                     </tr>
                                 ";
                             } else {
-                                echo "
-                                    <tr>
-                                        <td colspan='4'>No hay puntajes en este modo</td>
-                                    </tr>
-                                ";
+                                while($i==0){
+                                    echo "
+                                        <tr>
+                                            <td colspan='4'>No hay puntajes en este modo</td>
+                                        </tr>
+                                    ";
+                                    $i++;
+                                }
                             }
                         }
                     ?>
@@ -93,6 +101,7 @@
                 </thead>
                 <tbody>
                     <?php
+                        $i=0;
                         $peticion = "SELECT*FROM usuario NATURAL JOIN puntaje";
                         $query = mysqli_query($conexion, $peticion);
                         while($row = mysqli_fetch_array($query,MYSQLI_NUM)){
@@ -106,11 +115,14 @@
                                     </tr>
                                 ";
                             } else {
-                                echo "
-                                    <tr>
-                                        <td colspan='4'>No hay puntajes en este modo</td>
-                                    </tr>
-                                ";
+                                while($i==0){
+                                    echo "
+                                        <tr>
+                                            <td colspan='4'>No hay puntajes en este modo</td>
+                                        </tr>
+                                    ";
+                                    $i++;
+                                }
                             }
                         }
                     ?>
