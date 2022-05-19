@@ -262,7 +262,7 @@ const returnInicio = document.getElementById("btn-returnInicio");
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
-        inicio(8,8,10,1);//
+        inicio(8,8,10,1);
     } else if(modalidadClickeada.id == 'btn-medio'){
         inicio(16,16,40,2);
     } else if(modalidadClickeada.id == 'btn-dificil'){
@@ -319,12 +319,14 @@ confirmar.addEventListener("keyup", ()=>{
 guardarBD.addEventListener("click", () =>{
     if(nombre.value == confirmar.value){
         buscaminas.user = confirmar.value;
-        console.log(buscaminas.vModo);
-        console.log(buscaminas.puntajeSegundos);
-        console.log(buscaminas.date);
-        console.log(buscaminas.user);
         subirP.style.display = "none";
         returnInicio.style.display = "none";
         modalidad.style.display = "flex";
+        window.location="./dynamics/subirPuntajes.php";
+        //Crea cookies
+        document.cookie = "vModo="+buscaminas.vModo;
+        document.cookie = "puntajeSegundos="+buscaminas.puntajeSegundos;
+        document.cookie = "date="+buscaminas.date;
+        document.cookie = "user="+buscaminas.user;
     }
 });
