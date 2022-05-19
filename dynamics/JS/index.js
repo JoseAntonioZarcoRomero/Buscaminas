@@ -246,6 +246,17 @@ function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.contInicial = msInicial;
 }
 
+function readCookie(name){
+    let contenidoCookie = "";
+    let listaCookies = misCookies.split(";");
+    for (let i = 0; i < listaCookies.length; i++) {
+        if (listaCookies[i].includes(name)){
+            contenidoCookie = listaCookies[i].substring(1+name.length);
+        }
+    }
+    return contenidoCookie;
+}
+
 const explosion = new Audio("./statics/media/audio/explosion.mp3");
 const win = new Audio("./statics/media/audio/win.mp3");
 const modalidad = document.getElementById("contModalidad");
@@ -256,13 +267,16 @@ const subirP = document.getElementById("subirP");
 const guardarBD = document.getElementById("btn-guardarBD");
 const nombre = document.getElementById("nombre");
 const confirmar = document.getElementById("confirmar");
+var misCookies = document.cookie;
+var cookieUser = readCookie("user=");
+nombre.value = cookieUser;
 const intentar = document.getElementById("btn-intentar");
 const returnInicio = document.getElementById("btn-returnInicio");
 
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
-        inicio(8,8,10,1);//
+        inicio(8,8,10,1);
     } else if(modalidadClickeada.id == 'btn-medio'){
         inicio(16,16,40,2);
     } else if(modalidadClickeada.id == 'btn-dificil'){
@@ -319,12 +333,14 @@ confirmar.addEventListener("keyup", ()=>{
 guardarBD.addEventListener("click", () =>{
     if(nombre.value == confirmar.value){
         buscaminas.user = confirmar.value;
-        console.log(buscaminas.vModo);
-        console.log(buscaminas.puntajeSegundos);
-        console.log(buscaminas.date);
-        console.log(buscaminas.user);
         subirP.style.display = "none";
         returnInicio.style.display = "none";
         modalidad.style.display = "flex";
+        window.location="./dynamics/subirPuntajes.php";
+        //Crea cookies
+        document.cookie = "vModo="+buscaminas.vModo;
+        document.cookie = "puntajeSegundos="+buscaminas.puntajeSegundos;
+        document.cookie = "date="+buscaminas.date;
+        document.cookie = "user="+buscaminas.user;
     }
 });
