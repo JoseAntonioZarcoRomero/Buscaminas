@@ -22,6 +22,7 @@
         $query2 = mysqli_query($conexion,$peticion2);
         if($query2 === true){//Los Datos se Subieron Correctamente
             echo "<h1>Los Datos se Subieron Correctamente</h1>";
+            header("location: ./puntajes.php");
         }else{//Fallo al Subir los datos
             echo "<h1>Fallo al Subir los datos</h1>";
         }
