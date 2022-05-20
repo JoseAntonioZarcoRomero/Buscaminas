@@ -37,10 +37,15 @@
 	width: 300px;
 	height: 50px;
 	font-weight: bolder;
+	margin: 4em;
 }
 
 body{
 	background-image: url(../img/logo.jpeg);
+	display: flex;
+	text-align: center;
+	flex-flow: column;
+	justify-content: space-evenly;
 }
 
 /*#rayo{
@@ -71,7 +76,11 @@ body{
 	color:whitesmoke;
 	border-color:#DE130B;
 }
-
+/*Ranking
+------------------------------------------------------------------------------------------*/
+.blanco{
+	background-color: rgb(218, 214, 214, 0.7);
+}
 /*Juego buscaminas
 ------------------------------------------------------------------------------------------*/
 #juego{

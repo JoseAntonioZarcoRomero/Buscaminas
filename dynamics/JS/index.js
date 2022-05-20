@@ -336,7 +336,7 @@ guardarBD.addEventListener("click", () =>{
         subirP.style.display = "none";
         returnInicio.style.display = "none";
         modalidad.style.display = "flex";
-        window.location="./dynamics/subirPuntajes.php";
+        window.location="./dynamics/PHP/subirPuntajes.php";
         //Crea cookies
         document.cookie = "vModo="+buscaminas.vModo;
         document.cookie = "puntajeSegundos="+buscaminas.puntajeSegundos;
