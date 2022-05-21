@@ -8,9 +8,9 @@
         <link rel="shortcut icon" href="../../statics/img/copa.ico" type="image/x-icon">
         <link rel="stylesheet" href="../../statics/styles/styles.css">
     </head>
-    <body>
-        <h1 class='title'>M e j o r e s  T i e m p o s</h1>
-        <h2 class='title'>Tablero fácil</h2>
+    <body id="puntajes">
+        <h1 class='title' id="red">M e j o r e s  T i e m p o s</h1>
+        <h2 class='title' id="red">Tablero fácil</h2>
             <table align='center' border='1' cellpadding=10px class="blanco">
                 <thead>
                     <tr>
@@ -52,7 +52,7 @@
                     ?>
                 </tbody>
             </table>
-        <br><h2 class='title'>Tablero medio</h2>
+        <br><h2 class='title' id="red">Tablero medio</h2>
             <table align='center' border='1' cellpadding=10px class="blanco">
                 <thead>
                     <tr>
@@ -92,7 +92,7 @@
                     ?>
                 </tbody>
             </table>
-        <br><h2 class='title'>Tablero difícil</h2>
+        <br><h2 class='title' id="red">Tablero difícil</h2>
             <table align='center' border='1' cellpadding=10px class="blanco">
                 <thead>
                     <tr>
