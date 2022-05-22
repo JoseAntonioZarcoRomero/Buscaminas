@@ -10,25 +10,21 @@
     <body>
         <div id="encabezado">
             <h1 class="title">B u s c a m i n a s</h1>
-            <form action="./dynamics/puntajes.php" method='post' target='_self'>
+            <form action="./dynamics/PHP/puntajes.php" method='post' target='_self'>
                 <button class="boton">Ver<br>Puntajes</button>
             </form>
         </div>
-
-        <!-- <div id="rayo">
-            <img src="./statics/img/rayo.png" alt="rayo">
-        </div> -->
-        
         <div id="contModalidad">
-            <button class="boton" id="btn-facil" value="1" class="title">Fácil<br>(8x8 con 10 bombas)</button>
-            <button class="boton" id="btn-medio" value="2" class="title">Medio<br>(16x16 con 40 bombas)</button>
-            <button class="boton" id="btn-dificil" value="3" class="title">Difícil<br>(24x24 con 99 bombas)</button>
+            <div id="btn-modalidades">
+                <button class="boton" id="btn-facil" value="1" class="title">Fácil<br>(8x8 con 10 bombas)</button>
+                <button class="boton" id="btn-medio" value="2" class="title">Medio<br>(16x16 con 40 bombas)</button>
+                <button class="boton" id="btn-dificil" value="3" class="title">Difícil<br>(24x24 con 99 bombas)</button>
+            </div>
+            <div id="carros">
+                <img id="rayo" src="./statics/img/rayo.png" alt="rayo">
+                <img id="sally" src="./statics/img/sally2.png" alt="sally">
+            </div>
         </div>
-
-        <!-- <div id="sally">
-            <img src="./statics/img/sally.png" alt="sally">
-        </div> -->
-
         <div id="juego">
             <div id="tablero">
             </div>
@@ -38,14 +34,11 @@
                 Número de minas restantes: <span id="numMinasRestantes" class="text"></sapn>
             </div>
         </div>
-        
-
         <div id="guardarOintentar">
             <button class="boton" id="btn-guardar" class="text">Guardar puntaje</button>
             <button class="boton" id="btn-intentar" class="text">Intentar de nuevo</button>
         </div>
-
-        <div id="subirP">
+        <div id="subirP" class="blanco">
             <h2>¿Quieres subir tu puntaje?</h2>
             <form method="post" target="_self" id="form">
                 <p class="text">Tu tiempo fue de <span id="nSegundos"></span> segundo(s)</p>
@@ -56,7 +49,6 @@
             </form>
             <button class="boton" id="btn-guardarBD" class="text">Guardar</button>
         </div>
-
         <button class="boton" id="btn-returnInicio" class="text">Regresar al inicio</button>
         <script src="./dynamics/JS/index.js"></script>
     </body>

@@ -223,7 +223,6 @@ function perdiste(){
 function mRestantes(){
     document.querySelector("#numMinasRestantes").innerHTML = (buscaminas.mTotales - buscaminas.mEncontradas);
 }
-
 function inicio(numFilas,numColumnas,totMinas,vModo){
     buscaminas.nfilas = numFilas;
     buscaminas.ncolumnas = numColumnas;
@@ -245,7 +244,6 @@ function inicio(numFilas,numColumnas,totMinas,vModo){
     let msInicial = fechaInicial.setTime(fechaInicial.getTime());//#milisegundos desde 1/01/1970 GMT
     buscaminas.contInicial = msInicial;
 }
-
 function readCookie(name){
     let contenidoCookie = "";
     let listaCookies = misCookies.split(";");
@@ -256,7 +254,6 @@ function readCookie(name){
     }
     return contenidoCookie;
 }
-
 const explosion = new Audio("./statics/media/audio/explosion.mp3");
 const win = new Audio("./statics/media/audio/win.mp3");
 const modalidad = document.getElementById("contModalidad");
@@ -272,7 +269,8 @@ var cookieUser = readCookie("user=");
 nombre.value = cookieUser;
 const intentar = document.getElementById("btn-intentar");
 const returnInicio = document.getElementById("btn-returnInicio");
-
+/*Detectar eventos
+------------------------------------------------------------------------------------------*/
 modalidad.addEventListener("click", (event)=>{
     const modalidadClickeada = event.target;
     if(modalidadClickeada.id == 'btn-facil'){
@@ -287,7 +285,6 @@ modalidad.addEventListener("click", (event)=>{
     estado.style.display = "block";
     returnInicio.style.display = "block";
 });
-
 returnInicio.addEventListener("click", ()=>{
     modalidad.style.display = "flex";
     juego.style.display = "none";
@@ -297,7 +294,6 @@ returnInicio.addEventListener("click", ()=>{
     intentar.style.display = "none";
     returnInicio.style.display = "none";
 });
-
 intentar.addEventListener("click", ()=>{
     switch(buscaminas.vModo){
         case 1:
@@ -314,14 +310,12 @@ intentar.addEventListener("click", ()=>{
     }
     intentar.style.display = "none";
 });
-
 guardarP.addEventListener("click", ()=>{
     juego.style.display = "none";
     estado.style.display = "none";
     subirP.style.display = "block";
     guardarP.style.display = "none";
 });
-
 confirmar.addEventListener("keyup", ()=>{
     if(nombre.value == confirmar.value){
         guardarBD.style.display ="block";
@@ -329,14 +323,13 @@ confirmar.addEventListener("keyup", ()=>{
         guardarBD.style.display ="none";
     }
 });
-
 guardarBD.addEventListener("click", () =>{
     if(nombre.value == confirmar.value){
         buscaminas.user = confirmar.value;
         subirP.style.display = "none";
         returnInicio.style.display = "none";
         modalidad.style.display = "flex";
-        window.location="./dynamics/subirPuntajes.php";
+        window.location="./dynamics/PHP/subirPuntajes.php";
         //Crea cookies
         document.cookie = "vModo="+buscaminas.vModo;
         document.cookie = "puntajeSegundos="+buscaminas.puntajeSegundos;
